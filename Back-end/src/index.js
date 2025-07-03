@@ -26,7 +26,7 @@ app.use((req, res, next) => {
 
 // Rutas
 app.use('/', pendingsRoutes);
-app.use('/api', editablesRoutes);
+app.use('/', editablesRoutes);
 
 const PORT = process.env.PORT || 3000;
 
