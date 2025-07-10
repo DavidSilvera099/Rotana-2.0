@@ -1,14 +1,17 @@
+import Button from './components/atoms/Button'
+import Input from './components/atoms/Input'
+import { Image } from '@heroui/react'
+import logo from './assets/Logo-azul.webp'
 import './index.css'
-import {Button} from "@heroui/button";
-import {Link} from "@heroui/link";
 function App() {
 
   return (
     <>
-      <div className='flex flex-col items-center justify-center h-screen'>
-      <Link isExternal showAnchorIcon href="https://github.com/heroui-inc/heroui">
-        External Link test
-      </Link>
+      <div className="flex flex-col gap-4 w-1/2">
+        <Image src={logo} alt="logo" className="w-1/2" />
+        <Input label="Email" type="email" />
+        <Input label="Password" type="password" />
+        <Button text="Login" type="secondary" />
       </div>
     </>
   )

@@ -8,7 +8,7 @@
       extend: {
         colors: {
           primary: '#10345E',
-          secondary: '#BBE873',
+          secondary: '#45B56E',
         },
         screens: {
           'mobile': '375px',
