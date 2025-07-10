@@ -9,8 +9,8 @@ interface ImageProps {
 const Image: React.FC<ImageProps> = ({src, alt}) => {
 
   return (
-    <div>
-      <HeroImage src={src} alt={alt} />
+    <div className='w-full h-full'>
+      <HeroImage src={src} alt={alt} loading='lazy' />
     </div>
   );
 };

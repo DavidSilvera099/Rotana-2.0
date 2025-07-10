@@ -9,6 +9,7 @@
         colors: {
           primary: '#10345E',
           secondary: '#45B56E',
+          colorLogo: '#085997',
         },
         screens: {
           'mobile': '375px',
