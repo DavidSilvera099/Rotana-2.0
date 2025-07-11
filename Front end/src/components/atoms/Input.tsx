@@ -4,6 +4,9 @@ import {Input as HeroInput} from "@heroui/react";
 interface InputProps {
   label: string;
   type: string;
+  value?: string;
+  onChange?: (value: string) => void;
+  error?: string;
 }
 
 export const EyeSlashFilledIcon = (props: React.SVGProps<SVGSVGElement>) => {
@@ -66,10 +69,15 @@ export const EyeFilledIcon = (props: React.SVGProps<SVGSVGElement>) => {
   );
 };
 
-const Input: React.FC<InputProps> = ({label, type}) => {
+const Input: React.FC<InputProps> = ({label, type, value: externalValue, onChange, error}) => {
   const [isVisible, setIsVisible] = React.useState(false);
   const [showToggle, setShowToggle] = React.useState(false);
-  const [value, setValue] = React.useState("");
+  const [internalValue, setInternalValue] = React.useState(externalValue || "");
+
+  const handleValueChange = (newValue: string) => {
+    setInternalValue(newValue);
+    onChange?.(newValue);
+  };
 
   const toggleVisibility = () => setIsVisible(!isVisible);
 
@@ -78,11 +86,13 @@ const Input: React.FC<InputProps> = ({label, type}) => {
       <HeroInput 
         label={label} 
         type={isVisible ? "text" : "password"} 
-        value={value}
-        onValueChange={setValue}
+        value={internalValue}
+        onValueChange={handleValueChange}
         onFocus={() => setShowToggle(true)}
+        isInvalid={!!error}
+        errorMessage={error}
         endContent={
-          showToggle && value.length > 0 ? (
+          showToggle && internalValue.length > 0 ? (
             <button onClick={toggleVisibility}>
               {isVisible ? <EyeSlashFilledIcon className="text-xl" /> : <EyeFilledIcon className="text-xl" />}
             </button>
@@ -96,6 +106,10 @@ const Input: React.FC<InputProps> = ({label, type}) => {
     <HeroInput 
       label={label} 
       type={type} 
+      value={internalValue}
+      onValueChange={handleValueChange}
+      isInvalid={!!error}
+      errorMessage={error}
     />
   );
 };
