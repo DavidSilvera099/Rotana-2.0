@@ -93,7 +93,7 @@ const Input: React.FC<InputProps> = ({label, type, value: externalValue, onChang
         errorMessage={error}
         endContent={
           showToggle && internalValue.length > 0 ? (
-            <button onClick={toggleVisibility}>
+            <button type="button" onClick={toggleVisibility}>
               {isVisible ? <EyeSlashFilledIcon className="text-xl" /> : <EyeFilledIcon className="text-xl" />}
             </button>
           ) : null

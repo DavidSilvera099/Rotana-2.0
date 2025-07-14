@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Input from '../atoms/Input';
-import Spinner from '../atoms/Spinner';
+import Button from '../atoms/Button';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import type { AuthError } from 'firebase/auth';
 import { auth } from '../../config/firebase/firebase';
@@ -74,13 +74,13 @@ const LoginForm: React.FC<LoginFormProps> = ({title, subtitle, onLoginSuccess}) 
         <p className='text-colorLogo text-4xl'>{subtitle}</p>
       </div>
       <Input 
-        label="Email" 
+        label="Correo electrónico" 
         type="email" 
         value={email}
         onChange={handleEmailChange}
       />
       <Input 
-        label="Password" 
+        label="Contraseña" 
         type="password" 
         value={password}
         onChange={handlePasswordChange}
@@ -90,21 +90,13 @@ const LoginForm: React.FC<LoginFormProps> = ({title, subtitle, onLoginSuccess}) 
           {error}
         </div>
       )}
-      <button 
-        type="submit"
-
+      <Button 
+        text={loading ? "Cargando..." : "Iniciar sesión"}
+        type="secondary"
+        buttonType="submit"
+        loading={loading}
         disabled={!email || !password || loading}
-        className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white font-bold py-3 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center"
-      >
-        {loading ? (
-          <div className="flex items-center">
-            <Spinner size="sm" color="white" className="mr-2" />
-            Cargando...
-          </div>
-        ) : (
-          'Iniciar sesión'
-        )}
-      </button>
+      />
     </form>
   );
 };
