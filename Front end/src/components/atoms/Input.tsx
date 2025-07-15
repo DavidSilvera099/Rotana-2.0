@@ -74,6 +74,11 @@ const Input: React.FC<InputProps> = ({label, type, value: externalValue, onChang
   const [showToggle, setShowToggle] = React.useState(false);
   const [internalValue, setInternalValue] = React.useState(externalValue || "");
 
+  // Sincroniza el valor externo con el interno
+  React.useEffect(() => {
+    setInternalValue(externalValue || "");
+  }, [externalValue]);
+
   const handleValueChange = (newValue: string) => {
     setInternalValue(newValue);
     onChange?.(newValue);
